@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h2>Hello VTW</h2>
-	<h1>KYS</h1>
+	<h1>sample1</h1>
 
 </body>
 </html>
