@@ -1,5 +1,0 @@
-version: "3"
-services:
-  preprocess:
-    build: ./VTW
-    container_name: VTW

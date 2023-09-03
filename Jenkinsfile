@@ -56,7 +56,7 @@ pipeline {
                     continueOnError: false, failOnError: true,
                     publishers: [
                         sshPublisherDesc(
-                            configName: "ec2-deploy",//Jenkins 시스템 정보에 사전 입력한 서버 ID
+                            configName: "ubuntu",//Jenkins 시스템 정보에 사전 입력한 서버 ID
                             verbose: true,
                             transfers: [
                                 sshTransfer(
