@@ -1,9 +1,5 @@
 def component = [
-    Preprocess: false,
-    Hyper: false,
-    Train: false,
-    Test: false,
-    Bento: false
+    vtw: false
 ]
 
 pipeline {
