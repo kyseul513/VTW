@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    tools {
+        gradle 7.6 
+    }
+    
     
     environment { 
         repository = "kys513/vtw"
@@ -14,20 +18,17 @@ pipeline {
             }
         }
         
-        stage('Build') {
+	stage('Build Image') {
             steps {
-                dir("./") {
-                    sh "./gradlew clean build --stacktrace"
+                sh 'gradle init'
+                sh "echo 'building..'"
+                git credentialsId: 'b702e96e-273b-46c6-b7aa-7ba51ee29c87',url:'https://github.com/kyseul513/VTW.git', 
+                branch: 'master'
+                withGradle {
+                   sh 'gradle wrapper build'
                 }
+                sh 'docker build -t kys513/vtw .'
             }
-        }
-        
-        stage('Build-image') { 
-            steps { 
-                script { 
-                    sh "docker build -t kys513/vtw ."
-                }
-            } 
         }
         
         stage('Login') {
