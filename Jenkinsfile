@@ -39,14 +39,14 @@ pipeline {
         stage('Docker Push') { 
           steps { 
               script {
-                sh 'docker push kys513/vtw:3.0' //docker push
+                sh 'docker push kys513/vtw:latest' //docker push
               } 
           }
         } 
         
         stage('Cleaning up') { 
             steps { 
-              sh "docker rmi kys513/vtw:3.0" // docker image 제거
+              sh "docker rmi kys513/vtw:latest" // docker image 제거
               }
         }
         
