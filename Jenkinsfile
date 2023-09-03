@@ -1,5 +1,4 @@
-#!groovy
-env.warname //war 파일이름
+
 pipeline {
     agent any
     tools {
@@ -52,31 +51,6 @@ pipeline {
               }
         }
         
-        stage('SSH transfer') {
-            steps {
-                sshPublisher(
-                    continueOnError: false, failOnError: true,
-                    publishers: [
-                        sshPublisherDesc(
-                            configName: "ubuntu",//Jenkins 시스템 정보에 사전 입력한 서버 ID
-                            verbose: true,
-                            transfers: [
-								sshTransfer(
-								    sourceFiles: "${env.warname}.tar.gz", // 전송할 파일
-								    removePrefix: "", // 파일에서 삭제할 경로가 있다면 작성
-								    execCommand: """#!/bin/bash
-								    set -e
-
-								    docker login -u "kys513" -p "requiem513!"
-								    
-								    sh deploy.sh"""
-								)
-                            ]
-                        )
-                    ]
-                )
-            }
-        }
         
     }
 }
