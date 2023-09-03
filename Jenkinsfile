@@ -1,3 +1,5 @@
+#!groovy
+env.warname //war 파일이름
 pipeline {
     agent any
     tools {
@@ -60,7 +62,7 @@ pipeline {
                             verbose: true,
                             transfers: [
 								sshTransfer(
-								    sourceFiles: "scripts/deploy.sh", // 전송할 파일
+								    sourceFiles: "${env.warname}.tar.gz", // 전송할 파일
 								    removePrefix: "", // 파일에서 삭제할 경로가 있다면 작성
 								    execCommand: """#!/bin/bash
 								    set -e
