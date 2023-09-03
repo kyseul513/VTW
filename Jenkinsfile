@@ -59,12 +59,16 @@ pipeline {
                             configName: "ubuntu",//Jenkins 시스템 정보에 사전 입력한 서버 ID
                             verbose: true,
                             transfers: [
-                                sshTransfer(
-                                    sourceFiles: "scripts/deploy.sh", //전송할 파일
-                                    removePrefix: "scripts", //파일에서 삭제할 경로가 있다면 작성
-                                    execCommand: """echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
-                                    sh deploy.sh""" //원격지에서 실행할 커맨드
-                                    )
+								sshTransfer(
+								    sourceFiles: "scripts/deploy.sh", // 전송할 파일
+								    removePrefix: "", // 파일에서 삭제할 경로가 있다면 작성
+								    execCommand: """#!/bin/bash
+								    set -e
+
+								    docker login -u "kys513" -p "requiem513!"
+								    
+								    sh deploy.sh"""
+								)
                             ]
                         )
                     ]
